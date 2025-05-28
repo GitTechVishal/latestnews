@@ -7,7 +7,13 @@ let { title, description, imageUrl, newsUrl , author, date, source } = props;
     return (
       <div className="my-3">
         <div className="card" >
-          <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger" style={{zIndex:"1", left:"90%"}}>{source}</span>
+          
+          <div style={{display:"flex", justifyContent:"flex-end", position:"absolute", right:"0"}
+        }>
+          
+          {/* <span className="position-absolute top-0 translate-middle badge rounded-pill bg-danger" style={{zIndex:"1", left:"90%"}}>{source}</span> */}
+          <span className="badge rounded-pill bg-danger" >{source}</span>
+          </div>
           <img
             src={!imageUrl ? "https://i.sstatic.net/kMXZD.png" : imageUrl}
             className="card-img-top"
@@ -30,6 +36,7 @@ let { title, description, imageUrl, newsUrl , author, date, source } = props;
           </div>
         </div>
       </div>
+      
     );
   }
 //}

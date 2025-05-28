@@ -11,13 +11,16 @@ import InfiniteScroll from "react-infinite-scroll-component";
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
   const hasMore = results.length !== totalResults;
+   const {language } = props.language;
   //document.title = `${props.category.charAt(0).toUpperCase() + props.category.slice(1)}-QuickNews`;  
   
 
 //? updateNews function is used to fetch data from API 
 // ? and using in code multiple times.
   const  updateNews = async() => {
-          const url = `https://newsdata.io/api/1/latest?apikey=pub_8617669fd393f34562fd148386643bb7f607f&country=in&language=en,hi`;
+         const url = `https://newsdata.io/api/1/latest?apikey=pub_ab33f0089fee4d8a8c68764167d6b83c&country=in&language=${props.language}&category=${props.category}`;
+    
+    //     const url = `https://newsdata.io/api/1/latest?apikey=pub_8617669fd393f34562fd148386643bb7f607f&country=in&language=en,hi`;
     //    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=b48addce37f14417b243845d226982e6&page=${page}&pageSize=${props.pageSize}`;
 setLoading(true);  
 
@@ -34,19 +37,12 @@ setLoading(false);
 
   useEffect(() => {
     updateNews();
-  } , []);
-  // const prevPage = async () => {
-  //   setPage(page - 1);
-  //   updateNews();
-  // };
-  // const nextPage = async () => {
-  //   setPage(page + 1);
-  //   updateNews();
-  // };
+  } , [props.language]);//? This code is used to call updateNews function when page is reloaded.and page relaod when language is changed.
+
   const fetchMoreData = async () => {
    
     setPage(page + 1);
-     const url = `https://newsdata.io/api/1/latest?apikey=pub_8617669fd393f34562fd148386643bb7f607f&country=in&language=en,hi`;
+     const url = `https://newsdata.io/api/1/latest?apikey=pub_ab33f0089fee4d8a8c68764167d6b83c&country=in&language=${props.language}&category=${props.category}`;
   //  const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=b48addce37f14417b243845d226982e6&page=${page+1}&pageSize=${props.pageSize}`;
    setPage(page + 1);
     let data = await fetch(url);
@@ -60,7 +56,7 @@ setLoading(false);
 
     return (
       <>
-        <h1 className="text-center" style={{ margin: "47px 0px" }}>QuickNews-Top Head Lines on {props.category.charAt(0).toUpperCase() + props.category.slice(1)}</h1>
+        <h1 className="text-center" style={{ margin: "60px 0px" }}>LatestNews-Top Head Lines on {props.category.charAt(0).toUpperCase() + props.category.slice(1)}</h1>
         {/* //!Following is the spinner show only when loading is true */}
         {loading && <Spinner />}
        
@@ -79,7 +75,9 @@ setLoading(false);
         <div className="row">
           {/* //? Commented this to add infinite scroll */}
           {/* {!state.loading && */}
-            {results.map((element) => {
+         {/* //!to just avoid undefined error array.isArray(results) used. */}
+          {Array.isArray(results) &&
+            results.map((element) => {
               return ( 
                 <div className="col-md-4" key={element.link}>
                   <NewsItems
@@ -110,12 +108,12 @@ setLoading(false);
 
     News.defaultProps = {
     country: "us",
-    pageSize: 6,
+    size: 6,
     category: "general",
   };
   News.propTypes = {
     country: PropTypes.string,
-    pageSize: PropTypes.number,
+    size: PropTypes.number,
     category: PropTypes.string,
   };
 
