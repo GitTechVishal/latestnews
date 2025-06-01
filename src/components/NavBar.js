@@ -11,10 +11,7 @@ const NavBar = ({ language, setLanguage }) => {
         className="navbar fixed-top navbar-expand-lg navbar-dark bg-dark"
         style={{ color: "White" }}
       >
-        <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
-            LatestNews
-          </Link>
+        <div className="container-fluid"><Link className="navbar-brand" to="/">LatestNews</Link>
 
           <button
             className="navbar-toggler"
@@ -29,9 +26,9 @@ const NavBar = ({ language, setLanguage }) => {
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link className="nav-link " to="/">
-                  Home
+                          <li className="nav-item">
+                <Link className="nav-link " to="/top">
+                  Top
                 </Link>
               </li>
               <li className="nav-item">
@@ -39,9 +36,29 @@ const NavBar = ({ language, setLanguage }) => {
                   Business
                 </Link>
               </li>
+                           <li className="nav-item">
+                <Link className="nav-link " to="/domestic">
+                  Domestic
+                </Link>
+              </li>
+                  <li className="nav-item">
+                <Link className="nav-link " to="/education">
+                  Education
+                </Link>
+              </li>
               <li className="nav-item">
                 <Link className="nav-link " to="/entertainment">
                   Entertainment
+                </Link>
+              </li>
+               <li className="nav-item">
+                <Link className="nav-link " to="/environment">
+                  Environment
+                </Link>
+              </li>
+                 <li className="nav-item">
+                <Link className="nav-link " to="/food">
+                  Food
                 </Link>
               </li>
               <li className="nav-item">
@@ -49,7 +66,17 @@ const NavBar = ({ language, setLanguage }) => {
                   Health
                 </Link>
               </li>
-              <li className="nav-item">
+                 <li className="nav-item">
+                <Link className="nav-link " to="/lifestyle">
+                  Lifestyle
+                </Link>
+              </li>
+                           <li className="nav-item">
+                <Link className="nav-link " to="/politics">
+                  Politics
+                </Link>
+              </li>
+                  <li className="nav-item">
                 <Link className="nav-link " to="/science">
                   Science
                 </Link>
@@ -62,6 +89,21 @@ const NavBar = ({ language, setLanguage }) => {
               <li className="nav-item">
                 <Link className="nav-link " to="/technology">
                   Technology
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link " to="/tourism">
+                  Tourism
+                </Link>
+              </li>
+               <li className="nav-item">
+                <Link className="nav-link " to="/world">
+                  World
+                </Link>
+              </li>
+                <li className="nav-item">
+                <Link className="nav-link " to="/other">
+                  Other
                 </Link>
               </li>
             </ul>

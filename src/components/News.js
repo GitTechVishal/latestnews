@@ -113,7 +113,7 @@ setLoading(false);
     News.defaultProps = {
     country: "us",
     size: 6,
-    category: "general",
+    category: "top",
   };
   News.propTypes = {
     country: PropTypes.string,

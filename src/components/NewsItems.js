@@ -15,7 +15,7 @@ let { title, description, imageUrl, newsUrl , author, date, source } = props;
           <span className="badge rounded-pill bg-danger" >{source}</span>
           </div>
           <img
-            src={!imageUrl ? "https://i.sstatic.net/kMXZD.png" : imageUrl}
+            src={!imageUrl ? "/logo192.png" : imageUrl}
             className="card-img-top"
             alt="..."
           />
