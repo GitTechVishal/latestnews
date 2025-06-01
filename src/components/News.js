@@ -8,7 +8,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
   const News = (props) => {
   const [results, setresults] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [page, setPage] = useState(1);
+  const [nextpage, setnextPage] = useState(0);
   const [totalResults, setTotalResults] = useState(0);
   const hasMore = results.length !== totalResults;
    const {language } = props.language;
@@ -30,25 +30,29 @@ let parsedData = await data.json();
  props.setProgress(70);
 setresults(parsedData.results);
 setTotalResults(parsedData.totalResults);
+setnextPage(parsedData.nextPage);
 setLoading(false);
  props.setProgress(100);   
   }
 
-
+//useEffect is used to call updateNews function when page is reloaded([on which field changed])
   useEffect(() => {
     updateNews();
   } , [props.language]);//? This code is used to call updateNews function when page is reloaded.and page relaod when language is changed.
 
   const fetchMoreData = async () => {
    
-    setPage(page + 1);
-     const url = `https://newsdata.io/api/1/latest?apikey=pub_ab33f0089fee4d8a8c68764167d6b83c&country=in&language=${props.language}&category=${props.category}`;
+    //setPage(page + 1);
+
+     const url = `https://newsdata.io/api/1/latest?apikey=pub_ab33f0089fee4d8a8c68764167d6b83c&country=in&language=${props.language}&category=${props.category}&page=${nextpage}`;
   //  const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=b48addce37f14417b243845d226982e6&page=${page+1}&pageSize=${props.pageSize}`;
-   setPage(page + 1);
-    let data = await fetch(url);
+   //setPage(page + 1);
+  // setnextPage(nextpage + 1); 
+   let data = await fetch(url);
     let parsedData = await data.json();
     setresults(results.concat(parsedData.results));
     setTotalResults(parsedData.totalResults);
+    setnextPage(parsedData.nextPage);
     setLoading(false);
 
  
@@ -109,7 +113,7 @@ setLoading(false);
     News.defaultProps = {
     country: "us",
     size: 6,
-    category: "general",
+    category: "top",
   };
   News.propTypes = {
     country: PropTypes.string,

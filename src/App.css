@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-color: #cadbfb; /* Change to any color you like */
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
